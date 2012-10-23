@@ -1,0 +1,12 @@
+<!--
+    Context configuration file for the mcf-crawler-ui Web App
+-->
+
+<Context path="/mcf-crawler-ui" docBase="<%= @mcf_crawler_ui_dir %>"
+   debug="0" privileged="true" allowLinking="true" crossContext="true">
+  <!-- make symlinks work in Tomcat -->
+  <Resources className="org.apache.naming.resources.FileDirContext" allowLinking="true" />
+  <Environment name="MCF_HOME" value="<%= @home_dir %>" type="java.lang.String" override="true"/>
+  <Environment name="org.apache.manifoldcf.configfile" value="<%= @home_dir %>/properties.xml" type="java.lang.String" override="true"/>
+  <Parameter name="org.apache.manifoldcf.configfile" value="<%= @home_dir %>/properties.xml" override="true"/>
+</Context>

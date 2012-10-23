@@ -1,0 +1,19 @@
+{
+  "name": "nigelthomas-manifoldcf",
+  "author": "nigelthomas",
+  "description": "",
+  "license": "",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "version": "",
+  "checksums": {
+    "Modulefile": "5652359fb8419302d65e80c4e83ffdd7",
+    "README": "4d1075b5fd5b221db48d5a3710b66fcf",
+    "manifests/init.pp": "2de627539a523897b7cad2a17b5a017b",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "ca19ec4f451ebc7fdb035b52eae6e909",
+    "tests/init.pp": "892818ea636d684ecc9ef0e907205bdd"
+  },
+  "dependencies": []
+}

@@ -1,0 +1,9 @@
+<!--
+    Context configuration file for the mcf-api-service Web App
+-->
+
+<Context path="/mcf-api-service" docBase="<%= @mcf_api_service_dir %>"
+   debug="0" privileged="true" allowLinking="true" crossContext="true">
+  <!-- make symlinks work in Tomcat -->
+  <Resources className="org.apache.naming.resources.FileDirContext" allowLinking="true" />
+</Context>

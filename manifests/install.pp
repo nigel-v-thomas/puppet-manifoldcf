@@ -92,12 +92,6 @@ class manifoldcf::install ($source_url, $home_dir, $package) {
     autovacuum => off,
     require => Exec["unpack-manifoldcf"]
   }
-  
-  # TODO temporary account - remove
-  #postgresql::db { 'vagrant':
-  #    password => 'vagrant',
-  #    require => Class['postgresql::server']
-  #}
     
   $mcf_database_name = "mcfdatabase"
   $mcf_database_username = "manifoldcf"

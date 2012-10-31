@@ -18,6 +18,18 @@ class manifoldcf (
       $package = $manifoldcf::params::package,
       $db_type = $manifoldcf::params::db_type) inherits manifoldcf::params {
 
-  include manifoldcf::install
-  include manifoldcf::db
+  class { 
+    "manifoldcf::install":
+    source_url => $source_url,
+    home_dir => $home_dir,
+    package => $package,
+  }
+  
+  class {
+    "manifoldcf::db":
+    db_type => $db_type,
+    home_dir => $home_dir,
+    require => Class["manifoldcf::install"]
+  }
+
 }

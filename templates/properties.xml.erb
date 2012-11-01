@@ -24,7 +24,7 @@
   <property name="org.apache.manifoldcf.usejettyparentclassloader" value="false"/>
   <property name="org.apache.manifoldcf.jettyport" value="8345"/>
   <!-- Point to the synchronization area -->
-  <property name="org.apache.manifoldcf.synchdirectory" value="./syncharea"/>
+  <property name="org.apache.manifoldcf.synchdirectory" value="<%= @mcf_synchdirectory %>"/>
   <!-- Select Postgres as the database implementation, and specify multiprocess access -->
   <property name="org.apache.manifoldcf.postgresql.hostname" value="localhost"/>
   <property name="org.apache.manifoldcf.postgresql.ssl" value="false"/>

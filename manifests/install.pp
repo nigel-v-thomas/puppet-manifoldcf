@@ -1,7 +1,8 @@
 class manifoldcf::install (
   $source_url = $manifoldcf::params::source_url, 
   $home_dir = $manifoldcf::params::home_dir, 
-  $package = $manifoldcf::params::package
+  $package = $manifoldcf::params::package,
+  $mcf_synchdirectory = $manifoldcf::params::mcf_synchdirectory
   ) inherits manifoldcf::params {
   $tmp_dir = "/var/tmp"
   
@@ -13,21 +14,35 @@ class manifoldcf::install (
   }
    
   file {$home_dir:
-      path    => $home_dir,
-      ensure  => directory,
-      owner   => tomcat6,
-      mode    => 0644,
-      require => [Package["tomcat6"],Exec["create_manifoldcf_home_dir"]],
+    path    => $home_dir,
+    ensure  => directory,
+    owner   => tomcat6,
+    mode    => 0644,
+    require => [Package["tomcat6"],Exec["create_manifoldcf_home_dir"]],
+  }
+
+  file {"/var/lib/manifoldcf":
+    ensure  => directory,
+    owner   => tomcat6,
+    mode    => 0644,
+  }
+
+  file {$mcf_synchdirectory:
+    ensure  => directory,
+    path    => $mcf_synchdirectory,
+    owner   => tomcat6,
+    mode    => 0644,
+    require => File["/var/lib/manifoldcf"]
   }
   
   # TODO remove this hack
-  $source = "/vagrant/manifold-cf.tgz"
+  $source = "/vagrant/dist.tar.gz"
   
   $manifoldcf_home_dir = "${home_dir}"
   
   # unpack manifold dist into home directory
   exec {"unpack-manifoldcf":
-    command => "tar -xzf ${source} --directory ${manifoldcf_home_dir}",
+    command => "tar --strip-components=1 -xzf ${source} --directory ${manifoldcf_home_dir}",
     cwd => $manifoldcf_home_dir,
     creates => "$manifoldcf_home_dir/README.txt",
     require => [Package["tomcat6"], Exec["create_manifoldcf_home_dir"]],

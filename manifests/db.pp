@@ -9,6 +9,11 @@ class manifoldcf::db (
 
   case $db_type {
     "postgres": {
+      exec { "mcf-set-permission-of-shell-files":
+         command => "chmod +xX ${home_dir}/multiprocess-example-proprietary/**/*.sh",
+         path => ["/bin", "/usr/bin", "/usr/sbin"],
+         
+      }
       #initialise the db
       exec { "initialise_postgres_db":
         environment => ["JAVA_HOME=/usr/lib/jvm/java-6-openjdk/","MCF_HOME=${home_dir}/multiprocess-example-proprietary/"],
@@ -16,7 +21,7 @@ class manifoldcf::db (
         cwd => "${home_dir}/multiprocess-example-proprietary/",
         path => ["/bin", "/usr/bin", "/usr/sbin"],
         user => "tomcat6",
-        require => [Service["postgresql"],File["${home_dir}/multiprocess-example-proprietary/properties.xml"]],
+        require => [Service["postgresql"],File["${home_dir}/multiprocess-example-proprietary/properties.xml"], Exec["mcf-set-permission-of-shell-files"]],
         onlyif => "test `sudo -u postgres psql ${$mcf_database_name} -c \"\\dt\" | grep -c \"table\"` = 0", # Only run if tables do not exist
         logoutput => true
       }

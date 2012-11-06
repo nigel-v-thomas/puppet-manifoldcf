@@ -25,6 +25,7 @@ class manifoldcf::install (
     ensure  => directory,
     owner   => tomcat6,
     mode    => 0644,
+    require => File[$home_dir],
   }
 
   file {$mcf_synchdirectory:
@@ -40,7 +41,6 @@ class manifoldcf::install (
   
   $manifoldcf_home_dir = "${home_dir}"
   
-  # unpack manifold dist into home directory
   exec {"unpack-manifoldcf":
     command => "tar --strip-components=1 -xzf ${source} --directory ${manifoldcf_home_dir}",
     cwd => $manifoldcf_home_dir,
@@ -49,32 +49,44 @@ class manifoldcf::install (
     user => "tomcat6",
     path => ["/bin", "/usr/bin", "/usr/sbin"],
   }
-  
-  $mcf_api_service_dir = "${home_dir}/web-proprietary/war/mcf-api-service.war"
-  
-  file { "/etc/tomcat6/Catalina/localhost/mcf-api-service.xml":
-    ensure => present,
-    content => template("manifoldcf/mcf-api-service.xml.erb"),
-    require => [Package["tomcat6"]],
-    notify  => Service['tomcat6'],
+
+  # unpack mcf-api-service
+
+  manifoldcf::unpack-wars { "${home_dir}/web-proprietary/war/mcf-api-service.war":
+    unpack_dir => "${home_dir}/web-proprietary/war/mcf-api-service",
+    verify_file_exist => "${home_dir}/web-proprietary/war/mcf-api-service/WEB-INF",
+    require => Exec["unpack-manifoldcf"],
   }
   
-  $mcf_authority_service_dir = "${home_dir}/web-proprietary/war/mcf-authority-service.war"
-  
-  file { "/etc/tomcat6/Catalina/localhost/mcf-authority-service.xml":
-    ensure => present,
-    content => template("manifoldcf/mcf-authority-service.xml.erb"),
-    require => [Package["tomcat6"]],
-    notify  => Service['tomcat6'],
+  manifoldcf::setup-war-context {"/mcf-api-service":
+    war_docbase => "${home_dir}/web-proprietary/war/mcf-api-service",
+    require => Manifoldcf::Unpack-wars["${home_dir}/web-proprietary/war/mcf-api-service.war"]
   }
   
-  $mcf_crawler_ui_dir = "${home_dir}/web-proprietary/war/mcf-crawler-ui.war"
+  # unpack mcf crawler ui 
+
+  manifoldcf::unpack-wars { "${home_dir}/web-proprietary/war/mcf-crawler-ui.war":
+    unpack_dir => "${home_dir}/web-proprietary/war/mcf-crawler-ui",
+    verify_file_exist => "${home_dir}/web-proprietary/war/mcf-crawler-ui/WEB-INF",
+    require => Exec["unpack-manifoldcf"],
+  }
   
-  file { "/etc/tomcat6/Catalina/localhost/mcf-crawler-ui.xml":
-    ensure => present,
-    content => template("manifoldcf/mcf-crawler-ui.xml.erb"),
-    require => [Package["tomcat6"]],
-    notify  => Service['tomcat6'],
+  manifoldcf::setup-war-context {"/mcf-crawler-ui":
+    war_docbase => "${home_dir}/web-proprietary/war/mcf-crawler-ui",
+    require => Manifoldcf::Unpack-wars["${home_dir}/web-proprietary/war/mcf-crawler-ui.war"]
+  }
+
+  # unpack authority service
+  
+  manifoldcf::unpack-wars { "${home_dir}/web-proprietary/war/mcf-authority-service.war":
+    unpack_dir => "${home_dir}/web-proprietary/war/mcf-authority-service",
+    verify_file_exist => "${home_dir}/web-proprietary/war/mcf-authority-service/WEB-INF",
+    require => Exec["unpack-manifoldcf"],
+  }
+  
+  manifoldcf::setup-war-context {"/mcf-authority-service":
+    war_docbase => "${home_dir}/web-proprietary/war/mcf-authority-service",
+    require => Manifoldcf::Unpack-wars["${home_dir}/web-proprietary/war/mcf-authority-service.war"]
   }
   
 }

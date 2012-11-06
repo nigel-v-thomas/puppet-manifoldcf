@@ -25,10 +25,26 @@
   <property name="org.apache.manifoldcf.jettyport" value="8345"/>
   <!-- Point to the synchronization area -->
   <property name="org.apache.manifoldcf.synchdirectory" value="<%= @mcf_synchdirectory %>"/>
+  <% 
+  case @db_type
+    when "postgres"
+  %>
   <!-- Select Postgres as the database implementation, and specify multiprocess access -->
   <property name="org.apache.manifoldcf.postgresql.hostname" value="localhost"/>
   <property name="org.apache.manifoldcf.postgresql.ssl" value="false"/>
   <property name="org.apache.manifoldcf.databaseimplementationclass" value="org.apache.manifoldcf.core.database.DBInterfacePostgreSQL"/>
+  <% 
+    when "mysql"
+  %>
+  <property name="org.apache.manifoldcf.mysql.server" value="<%= @mcf_mysql_server %>"/>
+  <!--
+  <property name="org.apache.manifoldcf.mysql.client" value="localhost"/>
+  -->
+  <property name="org.apache.manifoldcf.databaseimplementationclass" value="org.apache.manifoldcf.core.database.DBInterfaceMySQL"/>
+  <%
+    else
+    end
+  %> 
   <property name="org.apache.manifoldcf.dbsuperusername" value="<%= @mcf_database_username %>"/>
   <property name="org.apache.manifoldcf.dbsuperuserpassword" value="<%= @mcf_database_password %>"/>
   <property name="org.apache.manifoldcf.database.name" value="<%= @mcf_database_name %>"/>

@@ -1,0 +1,44 @@
+#!/bin/sh -e
+
+### BEGIN INIT INFO
+# Provides:             manifold-cf manifold-cf
+# Required-Start:       $local_fs $remote_fs $network $time
+# Required-Stop:        $local_fs $remote_fs $network $time
+# Should-Start:         $syslog
+# Should-Stop:          $syslog
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Manifoldcf 1.0.1 agents
+### END INIT INFO
+
+# Check files exist and read permission granted
+[ -x <%= @mcf_start_agents_full_path %> ] || echo "unable to execute <%= @mcf_start_agents_full_path %>" exit 0
+[ -x <%= @mcf_stop_agents_full_path %> ] || echo "unable to execute <%= @mcf_stop_agents_full_path %>" exit 0
+
+VERSION=1.0.1
+
+case "$1" in
+    start)
+        cd <%= @mcf_agents_base_dir %>
+        nohup sudo -u tomcat6 <%= @mcf_start_agents_full_path %> >/var/log/tomcat6/mcf-agents-start.log 2>&1 &
+        echo "Completed command with status" $?
+        
+        ;;
+    stop)
+        cd <%= @mcf_agents_base_dir %>
+        nohup sudo -u tomcat6 <%= @mcf_stop_agents_full_path %> > /var/log/tomcat6/mcf-agents-stop.log 2>&1 &
+        echo "Completed command with status" $?
+        
+        ;;
+    restart | force-reload | reload)
+        echo "Error: argument '$1' not supported" >&2
+        ;;
+    status)
+        status $VERSION
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+exit 0

@@ -13,7 +13,7 @@
 #
 # [Remember: No empty lines between comments and class definition]
 class manifoldcf (
-      $source_url = $manifoldcf::params::source_url,
+      $source_url,
       $home_dir = $manifoldcf::params::home_dir,
       $package = $manifoldcf::params::package,
       $db_type = $manifoldcf::params::db_type,
@@ -38,6 +38,12 @@ class manifoldcf (
     mcf_database_username => $mcf_database_username, 
     mcf_database_password => $mcf_database_password,
     require => Class["manifoldcf::install"]
+  }
+  
+  class {
+    "manifoldcf::service":
+    home_dir => $home_dir,
+    require => Class["manifoldcf::db"]
   }
 
 }

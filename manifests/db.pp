@@ -9,17 +9,15 @@ class manifoldcf::db (
   inherits manifoldcf::params {
 
   exec { "mcf-set-permission-of-shell-files":
-     command => "find ${home_dir}/multiprocess-example-proprietary/ -name *.sh |xargs chmod +xX -v",
+     command => "find ${home_dir}/multiprocess-example-proprietary/ -name \*.sh | xargs chmod +xX -v",
      path => ["/bin", "/usr/bin", "/usr/sbin"],
      before => Exec["initialise_mcf_db"],
   }
   
-  file { "${home_dir}/multiprocess-example-proprietary/initialize-env-setup.sh":
-    ensure => present,
-    content => template("manifoldcf/db-initialise-with-env.sh.erb"),
-    before => Exec["initialise_mcf_db"],
-    owner   => tomcat6,
-    mode    => 0755,
+  manifoldcf::setup-script-env { "${home_dir}/multiprocess-example-proprietary/initialize-env-setup.sh":
+       home_dir => $home_dir,
+       full_path_script_to_run => "${home_dir}/multiprocess-example-proprietary/initialize.sh",
+       before => Exec["initialise_mcf_db"],
   }
   
   notice("Running intialise as ${db_type}")

@@ -1,5 +1,5 @@
 class manifoldcf::install (
-  $source_url = $manifoldcf::params::source_url, 
+  $source_url, 
   $home_dir = $manifoldcf::params::home_dir, 
   $package = $manifoldcf::params::package,
   $mcf_synchdirectory = $manifoldcf::params::mcf_synchdirectory
@@ -36,8 +36,23 @@ class manifoldcf::install (
     require => File["/var/lib/manifoldcf"]
   }
   
-  # TODO remove this hack
-  $source = "/vagrant/dist.tar.gz"
+  # if source url is a valid url, download solr
+  if $source_url =~ /^http.*/ {
+    $source = "${tmp_dir}/${package}.tgz"
+
+    exec { "download-solr":
+      command => "wget $source_url",
+      creates => "$source",
+      cwd => "$tmp_dir",
+      path => ["/bin", "/usr/bin", "/usr/sbin"],
+      require => File["mcf_synchdirectory"],
+      before => Exec["unpack-manifoldcf"],
+    }
+    
+  } else {
+    # assumes is a path.. 
+    $source = $source_url
+  }
   
   $manifoldcf_home_dir = "${home_dir}"
   

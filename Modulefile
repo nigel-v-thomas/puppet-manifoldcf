@@ -1,11 +1,9 @@
-name    'nigelthomas-manifoldcf'
+name 'nigelthomas-manifoldcf'
 version ''
-source ''
+
 author 'nigelthomas'
-license ''
+license 'MIT License (MIT)'
+project_page ''
+source ''
 summary ''
 description ''
-project_page ''
-
-## Add dependencies, if any:
-# dependency 'username/name', '>= 1.2.0'

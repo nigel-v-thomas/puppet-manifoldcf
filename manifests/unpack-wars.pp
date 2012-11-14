@@ -14,7 +14,7 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-define manifoldcf::unpack-wars($war_file_path = $title, $unpack_dir, $verify_file_exist, $run_as_user = "tomcat6"){
+define manifoldcf::unpack_wars($war_file_path = $title, $unpack_dir, $verify_file_exist, $run_as_user = "tomcat6"){
   
   # create a directory with the war name
   exec { "mkdir -p ${unpack_dir}":

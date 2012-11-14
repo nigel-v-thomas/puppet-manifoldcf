@@ -17,7 +17,7 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-define manifoldcf::setup-script-env($full_path_to_env_script = $title, $home_dir, $full_path_script_to_run){
+define manifoldcf::setup_script_env($full_path_to_env_script = $title, $home_dir, $full_path_script_to_run){
   
   file { "${full_path_to_env_script}":
     ensure => present,

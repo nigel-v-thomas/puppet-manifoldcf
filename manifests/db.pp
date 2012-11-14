@@ -4,7 +4,7 @@ class manifoldcf::db (
   $mcf_database_name = $manifoldcf::params::mcf_database_name, 
   $mcf_database_username = $manifoldcf::params::mcf_database_username, 
   $mcf_database_password = $manifoldcf::params::mcf_database_password,
-  $mcf_mysql_server = $manifoldcf::params::mcf_mysql_server
+  $mcf_mysql_server
   )
   inherits manifoldcf::params {
 
@@ -14,7 +14,7 @@ class manifoldcf::db (
      before => Exec["initialise_mcf_db"],
   }
   
-  manifoldcf::setup-script-env { "${home_dir}/multiprocess-example-proprietary/initialize-env-setup.sh":
+  manifoldcf::setup_script_env { "${home_dir}/multiprocess-example-proprietary/initialize-env-setup.sh":
        home_dir => $home_dir,
        full_path_script_to_run => "${home_dir}/multiprocess-example-proprietary/initialize.sh",
        before => Exec["initialise_mcf_db"],

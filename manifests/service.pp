@@ -6,13 +6,13 @@ class manifoldcf::service (
   $mcf_stop_agents_full_path = "${home_dir}/multiprocess-example-proprietary/stop-agents-env-setup.sh"
   $mcf_agents_base_dir = "${home_dir}/multiprocess-example-proprietary/"
   
-  manifoldcf::setup-script-env { "${mcf_start_agents_full_path}":
+  manifoldcf::setup_script_env { "${mcf_start_agents_full_path}":
      home_dir => $home_dir,
      full_path_script_to_run => "${home_dir}/multiprocess-example-proprietary/start-agents.sh",
      #before => Service["manifold-cf"],
   }
 
-  manifoldcf::setup-script-env { "${mcf_stop_agents_full_path}":
+  manifoldcf::setup_script_env { "${mcf_stop_agents_full_path}":
      home_dir => $home_dir,
      full_path_script_to_run => "${home_dir}/multiprocess-example-proprietary/stop-agents.sh",
      #before => Service["manifold-cf"],

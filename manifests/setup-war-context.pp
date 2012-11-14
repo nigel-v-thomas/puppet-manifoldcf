@@ -16,7 +16,7 @@
 # Sample Usage:
 #
 # [Remember: No empty lines between comments and class definition]
-define manifoldcf::setup-war-context($war_context_path = $title, $war_docbase){
+define manifoldcf::setup_war_context($war_context_path = $title, $war_docbase){
   
   file { "/etc/tomcat6/Catalina/localhost/${war_context_path}.xml":
     ensure => present,

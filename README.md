@@ -1,4 +1,4 @@
 puppet-manifoldcf
 =================
 
-A puppet module to setup apache manifoldcf on ubuntu
+A [http://docs.puppetlabs.com](puppet module) to setup [http://manifoldcf.apache.org/](apache manifoldcf) on Ubuntu

@@ -2,6 +2,7 @@
 class manifoldcf::params {
   case $operatingsystem {
     /(Ubuntu|Debian)/: {
+      $source_url = "http://mirror.ox.ac.uk/sites/rsync.apache.org/manifoldcf/apache-manifoldcf-1.0.1-bin.tar.gz"
       $home_dir = "/usr/share/manifoldcf"
       $package = "apache-manifoldcf-1.0.1"
       $db_type = "postgres"

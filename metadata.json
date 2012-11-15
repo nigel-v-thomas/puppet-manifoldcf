@@ -1,6 +1,6 @@
 {
-  "name": "nigelthomas-manifoldcf",
-  "author": "nigelthomas",
+  "name": "apache-manifoldcf",
+  "author": "nigel-v-thomas",
   "description": "",
   "license": "MIT License (MIT)",
   "project_page": "",
@@ -9,9 +9,9 @@
   "version": "",
   "checksums": {
     ".project": "78ab4ef45190f549f232943ecfb481ad",
-    "LICENSE": "6d222cca2ccc0090a130e4ff4c5de0ad",
-    "Modulefile": "c638cacb9a2d62eecfa841e052279ac8",
-    "README.md": "a923033b0909c0605f092276a410dcf0",
+    "LICENSE": "333e24857b1644d052ec87fbb95827e9",
+    "Modulefile": "5734be87aa2728b579539de5a359672f",
+    "README.md": "1216da0682829387bead72bc13c615d9",
     "manifests\\db.pp": "89d490d435e9aefbe8570cc2373105ef",
     "manifests\\init.pp": "0413ffa5dfb07d592fb6893777183212",
     "manifests\\install.pp": "59d32d5fff169621c9f6afddc1d80bef",

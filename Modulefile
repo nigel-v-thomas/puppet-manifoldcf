@@ -1,7 +1,7 @@
-name 'nigelthomas-manifoldcf'
+name 'apache-manifoldcf'
 version ''
 
-author 'nigelthomas'
+author 'nigel-v-thomas'
 license 'MIT License (MIT)'
 project_page ''
 source ''

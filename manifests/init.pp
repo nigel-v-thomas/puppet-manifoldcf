@@ -16,7 +16,7 @@ class manifoldcf (
       $home_dir = $manifoldcf::params::home_dir,
       $package = $manifoldcf::params::package,
       $db_type = $manifoldcf::params::db_type,
-      $mcf_mysql_server,
+      $mcf_mysql_server = $manifoldcf::params::mcf_mysql_server,
       $mcf_database_name = $manifoldcf::params::mcf_database_name, 
       $mcf_database_username = $manifoldcf::params::mcf_database_username, 
       $mcf_database_password = $manifoldcf::params::mcf_database_password) inherits manifoldcf::params {

@@ -10,6 +10,7 @@ class manifoldcf::params {
       $mcf_database_username = "manifoldcf"
       $mcf_database_password = "local_pg_password"
       $mcf_synchdirectory = "/var/lib/manifoldcf/syncharea"
+      $mcf_mysql_server = "localhost"
     }
     default: {
       fail("Operating system, $operatingsystem, is not supported by the tomcat module")

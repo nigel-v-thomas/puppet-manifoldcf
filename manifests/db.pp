@@ -4,7 +4,7 @@ class manifoldcf::db (
   $mcf_database_name = $manifoldcf::params::mcf_database_name, 
   $mcf_database_username = $manifoldcf::params::mcf_database_username, 
   $mcf_database_password = $manifoldcf::params::mcf_database_password,
-  $mcf_mysql_server
+  $mcf_mysql_server = $manifoldcf::params::mcf_mysql_server,
   )
   inherits manifoldcf::params {
 

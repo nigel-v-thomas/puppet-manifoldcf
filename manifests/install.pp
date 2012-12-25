@@ -89,7 +89,7 @@ class manifoldcf::install (
   
   manifoldcf::setup_war_context {"/mcf-api-service":
     war_docbase => "${home_dir}/web-proprietary/war/mcf-api-service",
-    require => Manifoldcf::Unpack-wars["${home_dir}/web-proprietary/war/mcf-api-service.war"]
+    require => Manifoldcf::Unpack_wars["${home_dir}/web-proprietary/war/mcf-api-service.war"]
   }
   
   # unpack mcf crawler ui 
@@ -102,7 +102,7 @@ class manifoldcf::install (
   
   manifoldcf::setup_war_context {"/mcf-crawler-ui":
     war_docbase => "${home_dir}/web-proprietary/war/mcf-crawler-ui",
-    require => Manifoldcf::Unpack-wars["${home_dir}/web-proprietary/war/mcf-crawler-ui.war"]
+    require => Manifoldcf::Unpack_wars["${home_dir}/web-proprietary/war/mcf-crawler-ui.war"]
   }
 
   # unpack authority service
@@ -115,7 +115,7 @@ class manifoldcf::install (
   
   manifoldcf::setup_war_context {"/mcf-authority-service":
     war_docbase => "${home_dir}/web-proprietary/war/mcf-authority-service",
-    require => Manifoldcf::Unpack-wars["${home_dir}/web-proprietary/war/mcf-authority-service.war"]
+    require => Manifoldcf::Unpack_wars["${home_dir}/web-proprietary/war/mcf-authority-service.war"]
   }
   
 }

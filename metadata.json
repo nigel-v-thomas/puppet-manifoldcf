@@ -13,7 +13,7 @@
     "README.md": "038c44c58a382f4fc02a695e9f0196e1",
     "manifests\\db.pp": "110292adb209a3de9463f145e306d3e8",
     "manifests\\init.pp": "04805a7204910a211856f607d0d94ad7",
-    "manifests\\install.pp": "fad970bff2c2a498810f2d2c940162ba",
+    "manifests\\install.pp": "7c318dbc2774a532d223b5e344c8f707",
     "manifests\\params.pp": "3b9005fa1554395e1c29479caa076152",
     "manifests\\service.pp": "583e1a86e56060bb51ec64c8b89ec663",
     "manifests\\setup_script_env.pp": "6fe35e6a96c79b3d2bfa371fd1a6ec37",

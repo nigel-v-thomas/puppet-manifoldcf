@@ -9,14 +9,14 @@ class manifoldcf::db (
   inherits manifoldcf::params {
 
   exec { "mcf-set-permission-of-shell-files":
-     command => "find ${home_dir}/multiprocess-example-proprietary/ -name \\*.sh | xargs chmod +xX -v",
+     command => "find ${home_dir}/multiprocess-example/ -name \\*.sh | xargs chmod +xX -v",
      path => ["/bin", "/usr/bin", "/usr/sbin"],
      before => Exec["initialise_mcf_db"],
   }
   
-  manifoldcf::setup_script_env { "${home_dir}/multiprocess-example-proprietary/initialize-env-setup.sh":
+  manifoldcf::setup_script_env { "${home_dir}/multiprocess-example/initialize-env-setup.sh":
        home_dir => $home_dir,
-       full_path_script_to_run => "${home_dir}/multiprocess-example-proprietary/initialize.sh",
+       full_path_script_to_run => "${home_dir}/multiprocess-example/initialize.sh",
        before => Exec["initialise_mcf_db"],
   }
   
@@ -25,11 +25,11 @@ class manifoldcf::db (
     "postgres": {
       #initialise the db
       exec { "initialise_mcf_db":
-        #environment => ["JAVA_HOME=/usr/lib/jvm/java-6-openjdk/","MCF_HOME=${home_dir}/multiprocess-example-proprietary/"],
-        command => "sudo -u tomcat6 ${home_dir}/multiprocess-example-proprietary/initialize-env-setup.sh",
-        cwd => "${home_dir}/multiprocess-example-proprietary/",
+        #environment => ["JAVA_HOME=/usr/lib/jvm/java-6-openjdk/","MCF_HOME=${home_dir}/multiprocess-example/"],
+        command => "sudo -u tomcat6 ${home_dir}/multiprocess-example/initialize-env-setup.sh",
+        cwd => "${home_dir}/multiprocess-example/",
         path => ["/bin", "/usr/bin", "/usr/sbin"],
-        require => [Service["postgresql"],File["${home_dir}/multiprocess-example-proprietary/properties.xml"], Exec["mcf-set-permission-of-shell-files"]],
+        require => [Service["postgresql"],File["${home_dir}/multiprocess-example/properties.xml"], Exec["mcf-set-permission-of-shell-files"]],
         onlyif => "test `sudo -u postgres psql ${mcf_database_name} -c \"\\dt\" | grep -c \"table\"` = 0", # Only run if tables do not exist
         logoutput => true
       }
@@ -40,12 +40,12 @@ class manifoldcf::db (
         }
       #initialise the db
       exec { "initialise_mcf_db":
-        environment => ["JAVA_HOME=/usr/lib/jvm/java-6-openjdk/","MCF_HOME=${home_dir}/multiprocess-example-proprietary/"],
-        command => "${home_dir}/multiprocess-example-proprietary/initialize.sh",
-        cwd => "${home_dir}/multiprocess-example-proprietary/",
+        environment => ["JAVA_HOME=/usr/lib/jvm/java-6-openjdk/","MCF_HOME=${home_dir}/multiprocess-example/"],
+        command => "${home_dir}/multiprocess-example/initialize.sh",
+        cwd => "${home_dir}/multiprocess-example/",
         path => ["/bin", "/usr/bin", "/usr/sbin"],
         user => "tomcat6",
-        require => [File["${home_dir}/multiprocess-example-proprietary/properties.xml"], Exec["mcf-set-permission-of-shell-files"]],
+        require => [File["${home_dir}/multiprocess-example/properties.xml"], Exec["mcf-set-permission-of-shell-files"]],
         logoutput => true
       }
     }
@@ -58,7 +58,7 @@ class manifoldcf::db (
   #Install step based on http://manifoldcf.apache.org/release/release-1.0.1/en_US/how-to-build-and-deploy.html#Framework+and+connectors
   #Section the basic steps required to set up and run ManifoldCF in multi-process mode are as follows:
   
-  file { "${home_dir}/multiprocess-example-proprietary/properties.xml":
+  file { "${home_dir}/multiprocess-example/properties.xml":
     ensure => present,
     content => template("manifoldcf/properties.xml.erb"),
     #require => [Exec["create_manifoldcf_home_dir"], Exec["unpack-manifoldcf"]],

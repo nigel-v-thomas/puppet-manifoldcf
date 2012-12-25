@@ -67,41 +67,41 @@ class manifoldcf::install (
 
   # unpack mcf-api-service
 
-  manifoldcf::unpack_wars { "${home_dir}/web-proprietary/war/mcf-api-service.war":
-    unpack_dir => "${home_dir}/web-proprietary/war/mcf-api-service",
-    verify_file_exist => "${home_dir}/web-proprietary/war/mcf-api-service/WEB-INF",
+  manifoldcf::unpack_wars { "${home_dir}/web/war/mcf-api-service.war":
+    unpack_dir => "${home_dir}/web/war/mcf-api-service",
+    verify_file_exist => "${home_dir}/web/war/mcf-api-service/WEB-INF",
     require => Exec["unpack-manifoldcf"],
   }
   
   manifoldcf::setup_war_context {"/mcf-api-service":
-    war_docbase => "${home_dir}/web-proprietary/war/mcf-api-service",
-    require => Manifoldcf::Unpack_wars["${home_dir}/web-proprietary/war/mcf-api-service.war"]
+    war_docbase => "${home_dir}/web/war/mcf-api-service",
+    require => Manifoldcf::Unpack_wars["${home_dir}/web/war/mcf-api-service.war"]
   } 
   
   # unpack mcf crawler ui 
 
-  manifoldcf::unpack_wars { "${home_dir}/web-proprietary/war/mcf-crawler-ui.war":
-    unpack_dir => "${home_dir}/web-proprietary/war/mcf-crawler-ui",
-    verify_file_exist => "${home_dir}/web-proprietary/war/mcf-crawler-ui/WEB-INF",
+  manifoldcf::unpack_wars { "${home_dir}/web/war/mcf-crawler-ui.war":
+    unpack_dir => "${home_dir}/web/war/mcf-crawler-ui",
+    verify_file_exist => "${home_dir}/web/war/mcf-crawler-ui/WEB-INF",
     require => Exec["unpack-manifoldcf"],
   }
   
   manifoldcf::setup_war_context {"/mcf-crawler-ui":
-    war_docbase => "${home_dir}/web-proprietary/war/mcf-crawler-ui",
-    require => Manifoldcf::Unpack_wars["${home_dir}/web-proprietary/war/mcf-crawler-ui.war"]
+    war_docbase => "${home_dir}/web/war/mcf-crawler-ui",
+    require => Manifoldcf::Unpack_wars["${home_dir}/web/war/mcf-crawler-ui.war"]
   }
 
   # unpack authority service
   
-  manifoldcf::unpack_wars { "${home_dir}/web-proprietary/war/mcf-authority-service.war":
-    unpack_dir => "${home_dir}/web-proprietary/war/mcf-authority-service",
-    verify_file_exist => "${home_dir}/web-proprietary/war/mcf-authority-service/WEB-INF",
+  manifoldcf::unpack_wars { "${home_dir}/web/war/mcf-authority-service.war":
+    unpack_dir => "${home_dir}/web/war/mcf-authority-service",
+    verify_file_exist => "${home_dir}/web/war/mcf-authority-service/WEB-INF",
     require => Exec["unpack-manifoldcf"],
   }
   
   manifoldcf::setup_war_context {"/mcf-authority-service":
-    war_docbase => "${home_dir}/web-proprietary/war/mcf-authority-service",
-    require => Manifoldcf::Unpack_wars["${home_dir}/web-proprietary/war/mcf-authority-service.war"]
+    war_docbase => "${home_dir}/web/war/mcf-authority-service",
+    require => Manifoldcf::Unpack_wars["${home_dir}/web/war/mcf-authority-service.war"]
   }
   
 }

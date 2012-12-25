@@ -90,7 +90,7 @@ class manifoldcf::install (
   manifoldcf::setup_war_context {"/mcf-api-service":
     war_docbase => "${home_dir}/web-proprietary/war/mcf-api-service",
     require => Manifoldcf::Unpack_wars["${home_dir}/web-proprietary/war/mcf-api-service.war"]
-  }
+  } 
   
   # unpack mcf crawler ui 
 

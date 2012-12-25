@@ -21,6 +21,20 @@ class manifoldcf (
       $mcf_database_username = $manifoldcf::params::mcf_database_username, 
       $mcf_database_password = $manifoldcf::params::mcf_database_password) inherits manifoldcf::params {
 
+  package {"openjdk-6-jdk":
+    ensure => present,
+    before => Class["manifoldcf::install"]
+  }  
+  package {"tomcat6":
+    ensure => present,
+    before => Class["manifoldcf::install"]
+  }
+  
+  service{ "tomcat6":
+    ensure => running,
+    require => Package["tomcat6"]
+  }
+
   class { 
     "manifoldcf::install":
     source_url => $source_url,

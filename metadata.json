@@ -11,7 +11,7 @@
     "LICENSE": "333e24857b1644d052ec87fbb95827e9",
     "Modulefile": "5734be87aa2728b579539de5a359672f",
     "README.md": "038c44c58a382f4fc02a695e9f0196e1",
-    "manifests\\db.pp": "8f77dca860ffc256a2760999ec209325",
+    "manifests\\db.pp": "110292adb209a3de9463f145e306d3e8",
     "manifests\\init.pp": "04805a7204910a211856f607d0d94ad7",
     "manifests\\install.pp": "19995907ca682d3adabce2826bda6ace",
     "manifests\\params.pp": "3b9005fa1554395e1c29479caa076152",

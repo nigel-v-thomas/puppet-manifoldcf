@@ -61,7 +61,7 @@ class manifoldcf::db (
   file { "${home_dir}/multiprocess-example-proprietary/properties.xml":
     ensure => present,
     content => template("manifoldcf/properties.xml.erb"),
-    require => [Exec["create_manifoldcf_home_dir"], Exec["unpack-manifoldcf"]],
+    #require => [Exec["create_manifoldcf_home_dir"], Exec["unpack-manifoldcf"]],
     notify  => Service['tomcat6'],
   }
 }

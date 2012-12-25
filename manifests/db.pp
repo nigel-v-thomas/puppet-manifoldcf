@@ -9,7 +9,7 @@ class manifoldcf::db (
   inherits manifoldcf::params {
 
   exec { "mcf-set-permission-of-shell-files":
-     command => "find ${home_dir}/multiprocess-example-proprietary/ -name \*.sh | xargs chmod +xX -v",
+     command => "find ${home_dir}/multiprocess-example-proprietary/ -name \\*.sh | xargs chmod +xX -v",
      path => ["/bin", "/usr/bin", "/usr/sbin"],
      before => Exec["initialise_mcf_db"],
   }

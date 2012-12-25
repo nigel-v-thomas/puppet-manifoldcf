@@ -13,8 +13,12 @@ class manifoldcf::install (
   package {"tomcat6":
     ensure => present,
     before => Exec["create_manifoldcf_home_dir"]
-  }  
-
+  }
+  
+  service{ "tomcat6":
+    ensure => running,
+    require => Package["tomcat6"]
+  }
   
   # ensure home dir is setup and installed
   exec { "create_manifoldcf_home_dir":

@@ -21,7 +21,7 @@ define manifoldcf::setup_war_context($war_context_path = $title, $war_docbase){
   file { "/etc/tomcat6/Catalina/localhost/${war_context_path}.xml":
     ensure => present,
     content => template("manifoldcf/tomcat-context-template.xml.erb"),
-    require => [Package["tomcat6"]],
+    require => [Service["tomcat6"]],
     notify  => Service['tomcat6'],
   }
   

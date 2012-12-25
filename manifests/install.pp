@@ -32,7 +32,7 @@ class manifoldcf::install (
     ensure  => directory,
     owner   => tomcat6,
     mode    => 0644,
-    require => [Package["tomcat6"],Exec["create_manifoldcf_home_dir"]],
+    require => [Service["tomcat6"],Exec["create_manifoldcf_home_dir"]],
   }
 
   file {"/var/lib/manifoldcf":
@@ -74,7 +74,7 @@ class manifoldcf::install (
     command => "tar --strip-components=1 -xzf ${source} --directory ${manifoldcf_home_dir}",
     cwd => $manifoldcf_home_dir,
     creates => "$manifoldcf_home_dir/README.txt",
-    require => [Package["tomcat6"], Exec["create_manifoldcf_home_dir"]],
+    require => [Service["tomcat6"], Exec["create_manifoldcf_home_dir"]],
     user => "tomcat6",
     path => ["/bin", "/usr/bin", "/usr/sbin"],
   }

@@ -22,7 +22,7 @@ define manifoldcf::setup_script_env($full_path_to_env_script = $title, $home_dir
   file { "${full_path_to_env_script}":
     ensure => present,
     content => template("manifoldcf/initialise-with-env.sh.erb"),
-    require => Package["tomcat6"],
+    require => Service["tomcat6"],
     owner   => tomcat6,
     mode    => 0755,
   }

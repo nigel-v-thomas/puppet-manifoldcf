@@ -22,7 +22,7 @@ class manifoldcf::service (
     content => template("manifoldcf/manifold-cf.erb"),
     owner   => tomcat6,
     mode    => 0755,
-    before =>  Manifoldcf::Setup-script-env["${mcf_start_agents_full_path}"]
+    before =>  Manifoldcf::Setup_script_env["${mcf_start_agents_full_path}"]
   }
   
   service{ "manifold-cf":

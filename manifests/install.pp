@@ -59,7 +59,7 @@ class manifoldcf::install (
       creates => "$source",
       cwd => "$tmp_dir",
       path => ["/bin", "/usr/bin", "/usr/sbin"],
-      require => File["mcf_synchdirectory"],
+      require => File[$mcf_synchdirectory],
       before => Exec["unpack-manifoldcf"],
     }
     
